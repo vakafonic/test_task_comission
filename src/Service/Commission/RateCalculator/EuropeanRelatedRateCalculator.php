@@ -11,9 +11,15 @@ use function bcmul;
 
 class EuropeanRelatedRateCalculator implements RateCalculatorInterface
 {
-
+    /**
+     * EuropeanRelatedRateCalculator constructor.
+     * @param CountryFeeManagerInterface $countryFeeManager
+     * @param string $baseCurrency ISO 4217 currency code
+     * @param int $scale
+     * @param int $precision
+     */
     public function __construct(
-        private CountryFeeManager $feeService,
+        private CountryFeeManagerInterface $countryFeeManager,
         private string $baseCurrency,
         private int $scale,
         private int $precision
@@ -34,6 +40,6 @@ class EuropeanRelatedRateCalculator implements RateCalculatorInterface
     private function getFeeForCountry(
         string $country
     ): string {
-        return $this->feeService->getFeeForCountry($country);
+        return $this->countryFeeManager->getFeeForCountry($country);
     }
 }

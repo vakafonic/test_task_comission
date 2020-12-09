@@ -30,9 +30,10 @@ class CommissionManager implements CommissionManagerInterface
     }
 
     /**
-     * @inheritDoc
-     * @throws DataReadException
+     * @param string $filepath
+     * @return float[]
      * @throws CalculationException
+     * @throws DataReadException
      */
     public function calculateFromFile(string $filepath): array
     {
@@ -77,12 +78,18 @@ class CommissionManager implements CommissionManagerInterface
 
         $output = [];
         foreach ($transactions as $transaction) {
+            $rate = $rates[$transaction->getCurrency()]
+                ?? throw new CalculationException('Rate not found for currency ' . $transaction->getCurrency());
+            // Todo ask if BIN is a public opened info and can be logged
+            $country = $countries[$transaction->getBin()]
+                ?? throw new CalculationException('Country not found for BIN ' . $transaction->getBin());
+
             $dto = $this->rateCalculatorDTOFactory->make(
                 $this->rateCalculator::class,
                 $transaction->getAmount(),
-                (string)$rates[$transaction->getCurrency()],
+                (string)$rate,
                 $transaction->getCurrency(),
-                $countries[$transaction->getBin()],
+                $country,
             );
 
             $output[] = $this->rateCalculator->getRate($dto);

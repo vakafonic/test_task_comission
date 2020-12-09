@@ -18,12 +18,13 @@ class ExchangeRatesProvider implements ExchangeRateProviderInterface
     }
 
     /**
-     * @inheritDoc
+     * @return string[]
+     * @throws ApiException
      */
     public function getRates(): array
     {
         try {
-            # Base currency EUR is used by default in request, add currency param to request if it will be changed
+            // Base currency EUR is used by default in request, add currency param to request if it will be changed
             $response = $this->client->request('GET', static::ENDPOINT_LATEST);
             $body = json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
         } catch (GuzzleException $guzzleException) {

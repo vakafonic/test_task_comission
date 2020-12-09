@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service\Commission\ExternalApi\CountryProvider;
 
+use App\Service\Commission\DTO\Transaction;
 use App\Service\Commission\Exception\ApiException;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Promise\Utils;
@@ -23,7 +24,9 @@ class BinlistProvider implements CountryProviderInterface
     }
 
     /**
-     * @inheritDoc
+     * @param Transaction[] $transactions
+     * @return array country value indexed by key ['bin' => 'country']
+     * @throws ApiException
      */
     public function getCountryListForTransactions(array $transactions): array
     {
@@ -46,7 +49,7 @@ class BinlistProvider implements CountryProviderInterface
         }
         try {
             Utils::all($promises)->wait();
-        } catch (Throwable $exception) {
+        } catch (Throwable $exception) { // Throwable because of a lot variety of things that could happened
             throw new ApiException($exception->getMessage(), $exception->getCode(), $exception);
         }
 

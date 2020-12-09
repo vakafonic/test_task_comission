@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service\Commission\ExternalApi\ExchangeRateProvider;
 
+use Psr\Cache\InvalidArgumentException;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 
@@ -19,6 +20,10 @@ class ExchangeRateCachedProvider implements ExchangeRateProviderInterface
     ) {
     }
 
+    /**
+     * @return string[]
+     * @throws InvalidArgumentException
+     */
     public function getRates(): array
     {
         return $this->cache->get(

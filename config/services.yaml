@@ -37,12 +37,12 @@ services:
   App\Service\Commission\ExternalApi\CountryProvider\BinlistProvider:
     class: App\Service\Commission\ExternalApi\CountryProvider\BinlistProvider
     arguments:
-      $client: "@binlist_client"
+      $client: "@guzzle_binlist_client"
 
   App\Service\Commission\ExternalApi\ExchangeRateProvider\ExchangeRatesProvider:
     class: App\Service\Commission\ExternalApi\ExchangeRateProvider\ExchangeRatesProvider
     arguments:
-      $client: "@exchange_rates_client"
+      $client: "@guzzle_exchange_rates_client"
       $baseCurrency: "%base_currency%"
 
   App\Service\Commission\ExternalApi\ExchangeRateProvider\ExchangeRateCachedProvider:
@@ -51,14 +51,14 @@ services:
       $realProvider: '@App\Service\Commission\ExternalApi\ExchangeRateProvider\ExchangeRatesProvider'
       $cacheTTL: '%rate_cache_ttl%'
 
-  binlist_client:
+  guzzle_binlist_client:
     class: GuzzleHttp\Client
     arguments:
       $config:
         base_uri: '%binlist_base_uri%'
         http_errors: false
 
-  exchange_rates_client:
+  guzzle_exchange_rates_client:
     class: GuzzleHttp\Client
     arguments:
       $config:

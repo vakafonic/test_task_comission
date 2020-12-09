@@ -8,7 +8,8 @@ class OldCommissionManager implements CommissionManagerInterface
 {
 
     /**
-     * @inheritDoc
+     * @param string $filepath
+     * @return float[]
      */
     public function calculateFromFile(string $filepath): array
     {

@@ -6,7 +6,7 @@ namespace App\Service\Commission\RateCalculator;
 
 use function in_array;
 
-class CountryFeeManager
+class CountryFeeManager implements CountryFeeManagerInterface
 {
     public function __construct(
         private array $europeanCountries,
@@ -15,6 +15,10 @@ class CountryFeeManager
     ) {
     }
 
+    /**
+     * @param string $country
+     * @return string float value of fee as string
+     */
     public function getFeeForCountry(
         string $country
     ): string {

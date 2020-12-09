@@ -59,7 +59,7 @@ class TransactionFactory
             }
         }
 
-        if (!empty($dtoCollection)) {
+        if (count($dtoCollection) > 0) {
             yield $dtoCollection;
         }
     }
