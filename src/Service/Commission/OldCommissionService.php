@@ -8,8 +8,7 @@ class OldCommissionService implements CommissionServiceInterface
 {
 
     /**
-     * @param string $filepath
-     * @return array
+     * @inheritDoc
      */
     public function calculateFromFile(string $filepath): array
     {
@@ -46,7 +45,7 @@ class OldCommissionService implements CommissionServiceInterface
         return $output;
     }
 
-    private function isEu($c)
+    private function isEu($c): string
     {
         $result = false;
         switch ($c) {

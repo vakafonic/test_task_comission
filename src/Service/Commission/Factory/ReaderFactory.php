@@ -15,7 +15,7 @@ class ReaderFactory
      * @param string $filePath
      * @param int|null $offset
      * @param int|null $limit
-     * @return FileReader
+     * @return ReaderInterface
      * @throws DataReadException
      */
     public function fileReader(string $filePath, int $offset = null, int $limit = null): ReaderInterface

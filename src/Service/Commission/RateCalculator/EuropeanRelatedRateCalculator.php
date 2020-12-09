@@ -6,7 +6,6 @@ namespace App\Service\Commission\RateCalculator;
 
 use App\Service\Commission\CountryFee\CountryFeeService;
 use App\Service\Commission\DTO\RateCalculator\CountryRelatedRateCalculatorDTOInterface;
-use JetBrains\PhpStorm\Pure;
 
 use function bcdiv;
 use function bcmul;
@@ -28,7 +27,6 @@ class EuropeanRelatedRateCalculator implements RateCalculatorInterface
         return bcmul($amount ?? $dto->getAmount(), $this->getFeeForCountry($dto->getCountry()), $this->scale);
     }
 
-    #[Pure]
     private function getFeeForCountry(
         string $country
     ): string {

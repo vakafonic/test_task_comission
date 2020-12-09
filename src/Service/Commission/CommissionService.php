@@ -30,8 +30,7 @@ class CommissionService implements CommissionServiceInterface
     }
 
     /**
-     * @param string $filepath
-     * @return float[]
+     * @inheritDoc
      * @throws DataReadException
      * @throws CalculationException
      */

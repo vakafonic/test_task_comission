@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Service\Commission\CountryFee;
 
-use JetBrains\PhpStorm\Pure;
-
 use function in_array;
 
 class CountryFeeService
@@ -17,7 +15,6 @@ class CountryFeeService
     ) {
     }
 
-    #[Pure]
     public function getFeeForCountry(
         string $country
     ): string {
