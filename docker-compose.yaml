@@ -1,0 +1,10 @@
+version: '3.5'
+services:
+  comission:
+    build:
+      context: ./
+      dockerfile: ./docker/php.docker
+    tty: true
+    volumes:
+      - ./:/app
+    working_dir: /app

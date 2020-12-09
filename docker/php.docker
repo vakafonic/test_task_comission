@@ -1,0 +1,3 @@
+FROM chrisb9/php8:cli-dev
+
+RUN docker-php-ext-install bcmath

@@ -1,0 +1,39 @@
+parameters:
+  default_batch_size: 10
+
+  binlist_base_uri: 'https://lookup.binlist.net/'
+  exchange_rates_base_uri: 'https://api.exchangeratesapi.io/'
+
+  calculation_precision: 5
+  base_currency: 'EUR'
+
+  european_country_fee: '0.01'
+  non_european_country_fee: '0.02'
+  european_countries:
+    - 'AT'
+    - 'BE'
+    - 'BG'
+    - 'CY'
+    - 'CZ'
+    - 'DE'
+    - 'DK'
+    - 'EE'
+    - 'ES'
+    - 'FI'
+    - 'FR'
+    - 'GR'
+    - 'HR'
+    - 'HU'
+    - 'IE'
+    - 'IT'
+    - 'LT'
+    - 'LU'
+    - 'LV'
+    - 'MT'
+    - 'NL'
+    - 'PO'
+    - 'PT'
+    - 'RO'
+    - 'SE'
+    - 'SI'
+    - 'SK'

@@ -1,0 +1,57 @@
+imports:
+  # all app-related parameters are included by this file
+  - { resource: 'app.yaml' }
+services:
+  # default configuration for services in *this* file
+  _defaults:
+    autowire: true      # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+    public: true
+
+  App\Service\Commission\:
+    resource: '../src/Service/Commission/'
+    exclude:
+      - '../src/Service/Commission/DTO/'
+      - '../src/Service/Commission/Reader/'
+
+  App\Service\Commission\CommissionService:
+    class: App\Service\Commission\CommissionService
+    arguments:
+      $batchSize: '%default_batch_size%'
+
+  App\Service\Commission\CountryFee\CountryFeeService:
+    class: App\Service\Commission\CountryFee\CountryFeeService
+    arguments:
+      $europeanCountries: '%european_countries%'
+      $europeanCountryFee: '%european_country_fee%'
+      $nonEuropeanCountryFee: '%non_european_country_fee%'
+
+  App\Service\Commission\RateCalculator\EuropeanRelatedRateCalculator:
+    class: App\Service\Commission\RateCalculator\EuropeanRelatedRateCalculator
+    arguments:
+      $baseCurrency: '%base_currency%'
+      $scale: '%calculation_precision%'
+
+  App\Service\Commission\ExternalApi\CountryProvider\Binlist:
+    class: App\Service\Commission\ExternalApi\CountryProvider\Binlist
+    arguments:
+      $client: "@binlist_client"
+
+  App\Service\Commission\ExternalApi\ExchangeRateProvider\ExchangeRates:
+    class: App\Service\Commission\ExternalApi\ExchangeRateProvider\ExchangeRates
+    arguments:
+      $client: "@exchange_rates_client"
+
+  binlist_client:
+    class: GuzzleHttp\Client
+    arguments:
+      $config:
+        base_uri: '%binlist_base_uri%'
+        http_errors: false
+
+  exchange_rates_client:
+    class: GuzzleHttp\Client
+    arguments:
+      $config:
+        base_uri: '%exchange_rates_base_uri%'
+        http_errors: false
