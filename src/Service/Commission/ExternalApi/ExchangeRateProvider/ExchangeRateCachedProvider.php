@@ -7,8 +7,9 @@ namespace App\Service\Commission\ExternalApi\ExchangeRateProvider;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 
-class ExchangeRateCached implements ExchangeRateProviderInterface
+class ExchangeRateCachedProvider implements ExchangeRateProviderInterface
 {
+    /** @var string this should be moved to provider if more keys will be added */
     public const CACHE_KEY_RATES = 'rates';
 
     public function __construct(

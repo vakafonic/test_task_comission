@@ -42,11 +42,11 @@ class TransactionFactory
             try {
                 $dtoCollection[] = new Transaction($decodedRow->bin, $decodedRow->amount, $decodedRow->currency);
                 $batchCounter++;
-            } catch (Throwable $e) {
+            } catch (Throwable $exception) {
                 $this->logger->warning(
                     sprintf(
                         'Not correct json body, missing parameter or wrong type: %s, row was: %s',
-                        $e,
+                        $exception,
                         $row
                     )
                 );

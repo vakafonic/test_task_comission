@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Service\Commission\CountryFee;
+namespace App\Service\Commission\RateCalculator;
 
 use function in_array;
 
-class CountryFeeService
+class CountryFeeManager
 {
     public function __construct(
         private array $europeanCountries,

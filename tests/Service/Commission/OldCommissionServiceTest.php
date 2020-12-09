@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Service\Commission;
 
-use App\Service\Commission\CommissionService;
-use App\Service\Commission\OldCommissionService;
+use App\Service\Commission\CommissionManager;
+use App\Service\Commission\OldCommissionManager;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use App\Kernel;
 
@@ -35,7 +35,7 @@ class OldCommissionServiceTest extends KernelTestCase
      */
     public function testGeneralFlow(string $filePath)
     {
-        $service = new OldCommissionService();
+        $service = new OldCommissionManager();
         $output = $service->calculateFromFile($filePath);
         $output[] = '';
     }
@@ -47,7 +47,7 @@ class OldCommissionServiceTest extends KernelTestCase
     {
 //        $serviceOld = new OldCommissionService();
 //        $outputOld = $serviceOld->calculateFromFile($filePath);
-        $serviceNew = static::$container->get(CommissionService::class);
+        $serviceNew = static::$container->get(CommissionManager::class);
         $outputNew = $serviceNew->calculateFromFile($filePath);
     }
 }

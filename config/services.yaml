@@ -14,14 +14,14 @@ services:
       - '../src/Service/Commission/DTO/'
       - '../src/Service/Commission/Reader/'
 
-  App\Service\Commission\CommissionService:
-    class: App\Service\Commission\CommissionService
+  App\Service\Commission\CommissionManager:
+    class: App\Service\Commission\CommissionManager
     arguments:
       $rateProvider: '@App\Service\Commission\ExternalApi\ExchangeRateProvider\ExchangeRateCached'
       $batchSize: '%default_batch_size%'
 
-  App\Service\Commission\CountryFee\CountryFeeService:
-    class: App\Service\Commission\CountryFee\CountryFeeService
+  App\Service\Commission\RateCalculator\CountryFeeManager:
+    class: App\Service\Commission\RateCalculator\CountryFeeManager
     arguments:
       $europeanCountries: '%european_countries%'
       $europeanCountryFee: '%european_country_fee%'
@@ -32,23 +32,23 @@ services:
     arguments:
       $baseCurrency: '%base_currency%'
       $scale: '%calculation_precision%'
-      $percision: '%calculation_round%'
+      $precision: '%calculation_round%'
 
-  App\Service\Commission\ExternalApi\CountryProvider\Binlist:
-    class: App\Service\Commission\ExternalApi\CountryProvider\Binlist
+  App\Service\Commission\ExternalApi\CountryProvider\BinlistProvider:
+    class: App\Service\Commission\ExternalApi\CountryProvider\BinlistProvider
     arguments:
       $client: "@binlist_client"
 
-  App\Service\Commission\ExternalApi\ExchangeRateProvider\ExchangeRates:
-    class: App\Service\Commission\ExternalApi\ExchangeRateProvider\ExchangeRates
+  App\Service\Commission\ExternalApi\ExchangeRateProvider\ExchangeRatesProvider:
+    class: App\Service\Commission\ExternalApi\ExchangeRateProvider\ExchangeRatesProvider
     arguments:
       $client: "@exchange_rates_client"
       $baseCurrency: "%base_currency%"
 
-  App\Service\Commission\ExternalApi\ExchangeRateProvider\ExchangeRateCached:
-    class: App\Service\Commission\ExternalApi\ExchangeRateProvider\ExchangeRateCached
+  App\Service\Commission\ExternalApi\ExchangeRateProvider\ExchangeRateCachedProvider:
+    class: App\Service\Commission\ExternalApi\ExchangeRateProvider\ExchangeRateCachedProvider
     arguments:
-      $realProvider: '@App\Service\Commission\ExternalApi\ExchangeRateProvider\ExchangeRates'
+      $realProvider: '@App\Service\Commission\ExternalApi\ExchangeRateProvider\ExchangeRatesProvider'
       $cacheTTL: '%rate_cache_ttl%'
 
   binlist_client:

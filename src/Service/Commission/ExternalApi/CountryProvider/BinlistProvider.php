@@ -15,7 +15,7 @@ use function json_decode;
 use function sprintf;
 
 
-class Binlist implements CountryProviderInterface
+class BinlistProvider implements CountryProviderInterface
 {
 
     public function __construct(private ClientInterface $client, private LoggerInterface $logger)

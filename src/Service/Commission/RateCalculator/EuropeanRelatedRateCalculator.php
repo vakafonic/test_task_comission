@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Service\Commission\RateCalculator;
 
-use App\Service\Commission\CountryFee\CountryFeeService;
 use App\Service\Commission\DTO\RateCalculator\CountryRelatedRateCalculatorDTOInterface;
 
 use function bcdiv;
@@ -14,10 +13,10 @@ class EuropeanRelatedRateCalculator implements RateCalculatorInterface
 {
 
     public function __construct(
-        private CountryFeeService $feeService,
+        private CountryFeeManager $feeService,
         private string $baseCurrency,
         private int $scale,
-        private int $percision
+        private int $precision
     ) {
     }
 
@@ -29,7 +28,7 @@ class EuropeanRelatedRateCalculator implements RateCalculatorInterface
         }
 
         $result = bcmul($amount ?? $dto->getAmount(), $this->getFeeForCountry($dto->getCountry()), $this->scale);
-        return round((float)$result, $this->percision);
+        return round((float)$result, $this->precision);
     }
 
     private function getFeeForCountry(

@@ -9,7 +9,7 @@ use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use JsonException;
 
-class ExchangeRates implements ExchangeRateProviderInterface
+class ExchangeRatesProvider implements ExchangeRateProviderInterface
 {
     public const ENDPOINT_LATEST = 'latest';
 

@@ -16,7 +16,7 @@ use App\Service\Commission\Factory\TransactionFactory;
 use App\Service\Commission\RateCalculator\RateCalculatorInterface;
 use App\Service\Commission\Reader\ReaderInterface;
 
-class CommissionService implements CommissionServiceInterface
+class CommissionManager implements CommissionManagerInterface
 {
     public function __construct(
         private ReaderFactory $readerFactory,
