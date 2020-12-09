@@ -17,6 +17,7 @@ services:
   App\Service\Commission\CommissionService:
     class: App\Service\Commission\CommissionService
     arguments:
+      $rateProvider: '@App\Service\Commission\ExternalApi\ExchangeRateProvider\ExchangeRateCached'
       $batchSize: '%default_batch_size%'
 
   App\Service\Commission\CountryFee\CountryFeeService:
@@ -31,6 +32,7 @@ services:
     arguments:
       $baseCurrency: '%base_currency%'
       $scale: '%calculation_precision%'
+      $percision: '%calculation_round%'
 
   App\Service\Commission\ExternalApi\CountryProvider\Binlist:
     class: App\Service\Commission\ExternalApi\CountryProvider\Binlist
@@ -41,6 +43,13 @@ services:
     class: App\Service\Commission\ExternalApi\ExchangeRateProvider\ExchangeRates
     arguments:
       $client: "@exchange_rates_client"
+      $baseCurrency: "%base_currency%"
+
+  App\Service\Commission\ExternalApi\ExchangeRateProvider\ExchangeRateCached:
+    class: App\Service\Commission\ExternalApi\ExchangeRateProvider\ExchangeRateCached
+    arguments:
+      $realProvider: '@App\Service\Commission\ExternalApi\ExchangeRateProvider\ExchangeRates'
+      $cacheTTL: '%rate_cache_ttl%'
 
   binlist_client:
     class: GuzzleHttp\Client

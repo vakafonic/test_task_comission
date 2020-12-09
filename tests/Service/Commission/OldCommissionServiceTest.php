@@ -45,8 +45,8 @@ class OldCommissionServiceTest extends KernelTestCase
      */
     public function testNewFlow(string $filePath)
     {
-        $serviceOld = new OldCommissionService();
-        $outputOld = $serviceOld->calculateFromFile($filePath);
+//        $serviceOld = new OldCommissionService();
+//        $outputOld = $serviceOld->calculateFromFile($filePath);
         $serviceNew = static::$container->get(CommissionService::class);
         $outputNew = $serviceNew->calculateFromFile($filePath);
     }

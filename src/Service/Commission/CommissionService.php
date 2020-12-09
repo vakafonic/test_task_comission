@@ -85,7 +85,7 @@ class CommissionService implements CommissionServiceInterface
                 $countries[$transaction->getBin()],
             );
 
-            $output[] = (float)$this->rateCalculator->getRate($dto);
+            $output[] = $this->rateCalculator->getRate($dto);
         }
 
         return $output;

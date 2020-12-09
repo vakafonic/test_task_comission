@@ -8,5 +8,5 @@ use App\Service\Commission\DTO\RateCalculator\CountryRelatedRateCalculatorDTOInt
 
 interface RateCalculatorInterface
 {
-    public function getRate(CountryRelatedRateCalculatorDTOInterface $dto): string;
+    public function getRate(CountryRelatedRateCalculatorDTOInterface $dto): float;
 }
