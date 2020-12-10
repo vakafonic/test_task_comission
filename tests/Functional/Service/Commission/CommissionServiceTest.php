@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Service\Commission;
+namespace App\Tests\Functional\Service\Commission;
 
+use App\Kernel;
 use App\Service\Commission\CommissionManager;
 use App\Service\Commission\Exception\CalculationException;
 use App\Service\Commission\Exception\DataReadException;
 use App\Service\Commission\OldCommissionManager;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use App\Kernel;
 
 use function round;
 
@@ -19,7 +19,7 @@ use function round;
  *
  *
  * Class CommissionServiceTest
- * @package App\Tests\Service\Commission
+ * @package App\Tests\Unit\Service\Commission
  */
 class CommissionServiceTest extends KernelTestCase
 {

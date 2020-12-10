@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Service\Commission\ExternalApi\CountryProvider;
+namespace App\Tests\Unit\Service\Commission\ExternalApi\CountryProvider;
 
 use App\Service\Commission\DTO\Transaction;
 use App\Service\Commission\ExternalApi\CountryProvider\BinlistProvider;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Service\Commission\ExternalApi\ExchangeRateProvider;
+namespace App\Tests\Unit\Service\Commission\ExternalApi\ExchangeRateProvider;
 
 use App\Service\Commission\ExternalApi\ExchangeRateProvider\ExchangeRatesProvider;
 use App\Tests\Helpers\GuzzleMockTestCase;

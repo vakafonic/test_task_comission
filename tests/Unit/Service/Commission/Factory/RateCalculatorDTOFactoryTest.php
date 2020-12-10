@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Service\Commission\Factory;
+namespace App\Tests\Unit\Service\Commission\Factory;
 
 use App\Service\Commission\DTO\RateCalculator\CountryRelatedRateCalculatorDTO;
 use App\Service\Commission\DTO\RateCalculator\CountryRelatedRateCalculatorDTOInterface;
