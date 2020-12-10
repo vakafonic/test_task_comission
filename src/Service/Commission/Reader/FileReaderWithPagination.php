@@ -14,6 +14,7 @@ use function fopen;
 use function implode;
 use function is_resource;
 use function json_encode;
+use function rtrim;
 
 class FileReaderWithPagination implements ReaderInterface
 {
@@ -68,7 +69,7 @@ class FileReaderWithPagination implements ReaderInterface
         }
         $rowsCounter = 0;
         while (!feof($this->file)) {
-            yield fgets($this->file, static::MAX_ROW_LENGTH);
+            yield rtrim(fgets($this->file, static::MAX_ROW_LENGTH));
             $rowsCounter++;
             if ($this->rowLimit === $rowsCounter) {
                 break;

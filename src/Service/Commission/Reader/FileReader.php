@@ -14,6 +14,7 @@ use function fopen;
 use function implode;
 use function is_resource;
 use function json_encode;
+use function rtrim;
 
 class FileReader implements ReaderInterface
 {
@@ -48,7 +49,7 @@ class FileReader implements ReaderInterface
     public function read(): Generator
     {
         while (!feof($this->file)) {
-            yield fgets($this->file, static::MAX_ROW_LENGTH);
+            yield rtrim(fgets($this->file, static::MAX_ROW_LENGTH));
         }
     }
 }

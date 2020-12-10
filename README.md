@@ -3,6 +3,7 @@ Here is the list of **possible inconsistencies** between your code-guide and thi
  * Used autoconfig + autowire because of test project, but ambigulos dependencies are passed correctly. In production terms I am also prefer to use container over magic.
  * Some private data (Bin) can be logged
  * Some configs can be not correctly structured because of app size 
+ * There can be buxs with xdebug 3 + php 8 so please fo raw testing using vendor/bin/phpunit, see https://youtrack.jetbrains.com/issue/WI-56947
 
 I don't get the meaning of next
 

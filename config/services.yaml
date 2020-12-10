@@ -17,7 +17,7 @@ services:
   App\Service\Commission\CommissionManager:
     class: App\Service\Commission\CommissionManager
     arguments:
-      $rateProvider: '@App\Service\Commission\ExternalApi\ExchangeRateProvider\ExchangeRateCached'
+      $rateProvider: '@App\Service\Commission\ExternalApi\ExchangeRateProvider\ExchangeRateCachedProvider'
       $batchSize: '%default_batch_size%'
 
   App\Service\Commission\RateCalculator\CountryFeeManager:
