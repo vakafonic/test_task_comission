@@ -64,3 +64,112 @@ services:
       $config:
         base_uri: '%exchange_rates_base_uri%'
         http_errors: false
+
+  App\Command\NumberOutputCommand:
+    class: App\Command\NumberOutputCommand
+    arguments:
+      $taskOneManager: '@number_printer_manager_task_one'
+      $taskTwoManager: '@number_printer_manager_task_two'
+      $taskThreeManager: '@number_printer_manager_task_three'
+    tags:
+      - { name: 'console.command', command: 'app:numbers' }
+
+  number_printer_manager_task_one:
+    class: App\Service\NumberPrinter\NumberPrintManager
+    arguments:
+      $middleware: '@middleware_task_one'
+      $stringCompiler: '@spaces_compiler'
+
+  number_printer_manager_task_two:
+    class: App\Service\NumberPrinter\NumberPrintManager
+    arguments:
+      $middleware: '@middleware_task_two'
+      $stringCompiler: '@dashes_compiler'
+
+  number_printer_manager_task_three:
+    class: App\Service\NumberPrinter\NumberPrintManager
+    arguments:
+      $middleware: '@middleware_task_three'
+      $stringCompiler: '@dashes_compiler'
+
+  middleware_task_one:
+    class: App\Service\NumberPrinter\Middleware\GeneratorMiddleware
+    arguments:
+      $printer: '@printer_task_one'
+
+  middleware_task_two:
+    class: App\Service\NumberPrinter\Middleware\GeneratorMiddleware
+    arguments:
+      $printer: '@printer_task_two'
+
+  middleware_task_three:
+    class: App\Service\NumberPrinter\Middleware\GeneratorMiddleware
+    arguments:
+      $printer: '@printer_task_three'
+
+  printer_task_one:
+    class: App\Service\NumberPrinter\Printer\ConditionPrinter
+    arguments:
+      $conditionOne: '@condition_divided_by_three'
+      $outputOne: 'pa'
+      $conditionTwo: '@condition_divided_by_five'
+      $outputTwo: 'pow'
+
+  printer_task_two:
+    class: App\Service\NumberPrinter\Printer\ConditionPrinter
+    arguments:
+      $conditionOne: '@condition_divided_by_two'
+      $outputOne: 'hatee'
+      $conditionTwo: '@condition_divided_by_seven'
+      $outputTwo: 'ho'
+
+  printer_task_three:
+    class: App\Service\NumberPrinter\Printer\ConditionPrinter
+    arguments:
+      $conditionOne: '@one_of_one_four_nine'
+      $outputOne: 'joff'
+      $conditionTwo: '@larger_then_five_condition'
+      $outputTwo: 'tchoff'
+
+  larger_then_five_condition:
+    class: App\Service\NumberPrinter\Conditions\LargerThanCondition
+    arguments:
+      $compareTo: 5
+
+  one_of_one_four_nine:
+    class: App\Service\NumberPrinter\Conditions\OneOfCondition
+    arguments:
+      $values:
+        - 1
+        - 4
+        - 9
+
+  condition_divided_by_two:
+    class: App\Service\NumberPrinter\Conditions\NumberDividesCondition
+    arguments:
+      $divideBy: 2
+
+  condition_divided_by_three:
+    class: App\Service\NumberPrinter\Conditions\NumberDividesCondition
+    arguments:
+      $divideBy: 3
+
+  condition_divided_by_five:
+    class: App\Service\NumberPrinter\Conditions\NumberDividesCondition
+    arguments:
+      $divideBy: 5
+
+  condition_divided_by_seven:
+    class: App\Service\NumberPrinter\Conditions\NumberDividesCondition
+    arguments:
+      $divideBy: 7
+
+  spaces_compiler:
+    class: App\Service\NumberPrinter\StringCompiler\SeparatorCompiler
+    arguments:
+      $separator: ' '
+
+  dashes_compiler:
+    class: App\Service\NumberPrinter\StringCompiler\SeparatorCompiler
+    arguments:
+      $separator: '-'
